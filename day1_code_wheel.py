@@ -1,5 +1,3 @@
-print("Day 1")
-
 inputTest = """L68
 L30
 R48
@@ -17,31 +15,47 @@ with open("inputs/day1.txt","r") as f:
 
 inputSplitted = input.splitlines()
 
-dialer = 50
-zeros = 0
+def part1():
+    dialer = 50
+    zeros = 0
+    
+    for line in inputSplitted:
+        direction = line[0]
+        clicks = int(line[1:])
+        print(f"{direction} -> {clicks}")
 
-for line in inputSplitted:
-    direction = line[0]
-    clicks = int(line[1:])
-    print(f"{direction} -> {clicks}")
+        if direction == 'R':
+            dialer = (dialer + clicks) % 100
+        else:
+            dialer = (dialer - clicks) % 100
+                    
+        print(dialer)    
+        if (dialer == 0):
+            zeros +=1
+    return zeros
 
-    # didn't work because there are dials > 100 like 150    
-    # if direction == 'R':
-    #     dialer += clicks
-    #     if (dialer > 99):
-    #         dialer -= 100
-    # else:
-    #     dialer -= clicks
-    #     if (dialer < 0):
-    #         dialer +=100
+def part2():
+    dialer = 50
+    zeros = 0
+    
+    for line in inputSplitted:
+        direction = line[0]
+        clicks = int(line[1:])
+        print(f"{direction} -> {clicks}")
 
-    if direction == 'R':
-        dialer = (dialer + clicks) % 100
-    else:
-        dialer = (dialer - clicks) % 100
-                
-    print(dialer)    
-    if (dialer == 0):
-        zeros +=1
+        for _ in range(clicks):
+            if direction == 'R':
+                dialer = (dialer + 1) % 100
+            else:
+                dialer = (dialer - 1) % 100
+            
+            if dialer == 0:
+                zeros += 1
+
+    return zeros
+
+# zeros = part1()
+zeros = part2()
 
 print(f"Number of zero results is {zeros}")
+
