@@ -1,2 +1,4 @@
-# adventofcode2025
-Adevnt Of Code 2025 Python learning
+# Advent Of Code 2025
+Learning Python (again)
+
+
